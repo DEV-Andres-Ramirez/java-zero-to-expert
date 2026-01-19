@@ -2,8 +2,11 @@
   "java.configuration.updateBuildConfiguration": "interactive",
   "java.format.settings.url": ".vscode/java-formatter.xml",
   "cSpell.words": [
+    "Andrés",
     "ctxt",
+    "datatypes",
     "logback",
+    "María",
     "NOSONAR"
   ]
 }
