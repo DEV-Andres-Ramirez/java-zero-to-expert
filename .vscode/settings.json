@@ -1,0 +1,9 @@
+{
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.format.settings.url": ".vscode/java-formatter.xml",
+  "cSpell.words": [
+    "ctxt",
+    "logback",
+    "NOSONAR"
+  ]
+}
