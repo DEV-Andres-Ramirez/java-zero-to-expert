@@ -59,7 +59,7 @@ public class App {
         boolean exit = false;
 
         while (!exit) {
-            logger.info("\n|----------------------------------------|");
+            logger.info("|----------------------------------------|");
             logger.info("|         MAIN MENU                      |");
             logger.info("|----------------------------------------|");
             logger.info("| 1. Environment Variables               |");
@@ -98,7 +98,7 @@ public class App {
      * Executes environment variable examples.
      */
     private static void executeEnvironmentVariablesExamples() {
-        logger.info("\n=== ENVIRONMENT VARIABLES ===\n");
+        logger.info("=== ENVIRONMENT VARIABLES ===\n");
 
         EnvironmentVariableManager.displayAllEnvironmentVariables();
         EnvironmentVariableManager.displaySpecificVariable("PATH");
@@ -115,7 +115,7 @@ public class App {
         boolean back = false;
 
         while (!back) {
-            logger.info("\n|----------------------------------------|");
+            logger.info("|----------------------------------------|");
             logger.info("|     CONSOLE OPERATIONS                 |");
             logger.info("|----------------------------------------|");
             logger.info("| 1. Basic Output                        |");
@@ -155,7 +155,7 @@ public class App {
         boolean back = false;
 
         while (!back) {
-            logger.info("\n|----------------------------------------|");
+            logger.info("|----------------------------------------|");
             logger.info("|     PRIMITIVE DATA TYPES               |");
             logger.info("|----------------------------------------|");
             logger.info("| 1. Integer Types                       |");
@@ -210,7 +210,7 @@ public class App {
         boolean back = false;
 
         while (!back) {
-            logger.info("\n|----------------------------------------|");
+            logger.info("|----------------------------------------|");
             logger.info("|     COMPOSITE DATA TYPES               |");
             logger.info("|----------------------------------------|");
             logger.info("| 1. Arrays (1D)                         |");
@@ -221,7 +221,7 @@ public class App {
             logger.info("| 6. Queue                               |");
             logger.info("| 7. Deque                               |");
             logger.info("| 8. BigDecimal                          |");
-            logger.info("║ 0. Back to Main Menu                   |");
+            logger.info("| 0. Back to Main Menu                   |");
             logger.info("|----------------------------------------|\n");
 
             int option = ConsoleUtils.readInt("Select an option: ");
