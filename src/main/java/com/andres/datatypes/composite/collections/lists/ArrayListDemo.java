@@ -375,10 +375,12 @@ public final class ArrayListDemo {
         // Default capacity (10)
         List<String> defaultList = new ArrayList<>();
         logger.info("Default ArrayList created");
+        logger.info(defaultList.toString());
 
         // With initial capacity
         List<String> optimizedList = new ArrayList<>(100);
         logger.info("ArrayList with initial capacity 100 created");
+        logger.info(optimizedList.toString());
 
         // Trimming capacity to size (rarely needed)
         List<String> list = new ArrayList<>(100);

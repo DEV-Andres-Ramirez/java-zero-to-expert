@@ -59,15 +59,15 @@ public class App {
         boolean exit = false;
 
         while (!exit) {
-            logger.info("\n╔════════════════════════════════════════╗");
-            logger.info("║         MAIN MENU                      ║");
-            logger.info("╠════════════════════════════════════════╣");
-            logger.info("║ 1. Environment Variables               ║");
-            logger.info("║ 2. Console Operations                  ║");
-            logger.info("║ 3. Primitive Data Types                ║");
-            logger.info("║ 4. Composite Data Types                ║");
-            logger.info("║ 0. Exit                                ║");
-            logger.info("╚════════════════════════════════════════╝\n");
+            logger.info("\n|----------------------------------------|");
+            logger.info("|         MAIN MENU                      |");
+            logger.info("|----------------------------------------|");
+            logger.info("| 1. Environment Variables               |");
+            logger.info("| 2. Console Operations                  |");
+            logger.info("| 3. Primitive Data Types                |");
+            logger.info("| 4. Composite Data Types                |");
+            logger.info("| 0. Exit                                |");
+            logger.info("|----------------------------------------|\n");
 
             int option = ConsoleUtils.readInt("Select an option: ");
 
@@ -115,14 +115,14 @@ public class App {
         boolean back = false;
 
         while (!back) {
-            logger.info("\n╔════════════════════════════════════════╗");
-            logger.info("║     CONSOLE OPERATIONS                 ║");
-            logger.info("╠════════════════════════════════════════╣");
-            logger.info("║ 1. Basic Output                        ║");
-            logger.info("║ 2. Formatted Output                    ║");
-            logger.info("║ 3. Input Capture                       ║");
-            logger.info("║ 0. Back to Main Menu                   ║");
-            logger.info("╚════════════════════════════════════════╝\n");
+            logger.info("\n|----------------------------------------|");
+            logger.info("|     CONSOLE OPERATIONS                 |");
+            logger.info("|----------------------------------------|");
+            logger.info("| 1. Basic Output                        |");
+            logger.info("| 2. Formatted Output                    |");
+            logger.info("| 3. Input Capture                       |");
+            logger.info("| 0. Back to Main Menu                   |");
+            logger.info("|----------------------------------------|\n");
 
             int option = ConsoleUtils.readInt("Select an option: ");
 
@@ -155,17 +155,17 @@ public class App {
         boolean back = false;
 
         while (!back) {
-            logger.info("\n╔════════════════════════════════════════╗");
-            logger.info("║     PRIMITIVE DATA TYPES               ║");
-            logger.info("╠════════════════════════════════════════╣");
-            logger.info("║ 1. Integer Types                       ║");
-            logger.info("║ 2. Floating Point Types                ║");
-            logger.info("║ 3. Character Type                      ║");
-            logger.info("║ 4. Boolean Type                        ║");
-            logger.info("║ 5. String Type                         ║");
-            logger.info("║ 6. Type Casting                        ║");
-            logger.info("║ 0. Back to Main Menu                   ║");
-            logger.info("╚════════════════════════════════════════╝\n");
+            logger.info("\n|----------------------------------------|");
+            logger.info("|     PRIMITIVE DATA TYPES               |");
+            logger.info("|----------------------------------------|");
+            logger.info("| 1. Integer Types                       |");
+            logger.info("| 2. Floating Point Types                |");
+            logger.info("| 3. Character Type                      |");
+            logger.info("| 4. Boolean Type                        |");
+            logger.info("| 5. String Type                         |");
+            logger.info("| 6. Type Casting                        |");
+            logger.info("| 0. Back to Main Menu                   |");
+            logger.info("|----------------------------------------|\n");
 
             int option = ConsoleUtils.readInt("Select an option: ");
 
@@ -210,19 +210,19 @@ public class App {
         boolean back = false;
 
         while (!back) {
-            logger.info("\n╔════════════════════════════════════════╗");
-            logger.info("║     COMPOSITE DATA TYPES               ║");
-            logger.info("╠════════════════════════════════════════╣");
-            logger.info("║ 1. Arrays (1D)                         ║");
-            logger.info("║ 2. Arrays (Multidimensional)           ║");
-            logger.info("║ 3. ArrayList                           ║");
-            logger.info("║ 4. HashMap                             ║");
-            logger.info("║ 5. HashSet                             ║");
-            logger.info("║ 6. Queue                               ║");
-            logger.info("║ 7. Deque                               ║");
-            logger.info("║ 8. BigDecimal                          ║");
-            logger.info("║ 0. Back to Main Menu                   ║");
-            logger.info("╚════════════════════════════════════════╝\n");
+            logger.info("\n|----------------------------------------|");
+            logger.info("|     COMPOSITE DATA TYPES               |");
+            logger.info("|----------------------------------------|");
+            logger.info("| 1. Arrays (1D)                         |");
+            logger.info("| 2. Arrays (Multidimensional)           |");
+            logger.info("| 3. ArrayList                           |");
+            logger.info("| 4. HashMap                             |");
+            logger.info("| 5. HashSet                             |");
+            logger.info("| 6. Queue                               |");
+            logger.info("| 7. Deque                               |");
+            logger.info("| 8. BigDecimal                          |");
+            logger.info("║ 0. Back to Main Menu                   |");
+            logger.info("|----------------------------------------|\n");
 
             int option = ConsoleUtils.readInt("Select an option: ");
 

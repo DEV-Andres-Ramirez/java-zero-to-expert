@@ -120,7 +120,7 @@ public final class CharacterTypeDemo {
         char b = 'B';
         char lowerA = 'a';
 
-        logger.info("'A' == 'A': {}", a == a);
+        logger.info("'A' == 'A': {}", a == 'A');
         logger.info("'A' == 'B': {}", a == b);
         logger.info("'A' == 'a': {}", a == lowerA);
         logger.info("'A' < 'B': {}", a < b);
