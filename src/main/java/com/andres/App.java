@@ -6,14 +6,14 @@ import org.slf4j.LoggerFactory;
 import com.andres.console.input.InputReader;
 import com.andres.console.output.BasicOutput;
 import com.andres.console.output.FormattedOutput;
-// import com.andres.datatypes.composite.arrays.MultiDimensionArrayDemo;
+import com.andres.datatypes.composite.arrays.MultiDimensionArrayDemo;
 import com.andres.datatypes.composite.arrays.SingleDimensionArrayDemo;
-// import com.andres.datatypes.composite.collections.lists.ArrayListDemo;
-// import com.andres.datatypes.composite.collections.maps.HashMapDemo;
-// import com.andres.datatypes.composite.collections.queues.DequeDemo;
-// import com.andres.datatypes.composite.collections.queues.QueueDemo;
-// import com.andres.datatypes.composite.collections.sets.HashSetDemo;
-// import com.andres.datatypes.composite.numeric.BigDecimalDemo;
+import com.andres.datatypes.composite.collections.lists.ArrayListDemo;
+import com.andres.datatypes.composite.collections.maps.HashMapDemo;
+import com.andres.datatypes.composite.collections.queues.DequeDemo;
+import com.andres.datatypes.composite.collections.queues.QueueDemo;
+import com.andres.datatypes.composite.collections.sets.HashSetDemo;
+import com.andres.datatypes.composite.numeric.BigDecimalDemo;
 import com.andres.datatypes.primitive.bool.BooleanTypeDemo;
 import com.andres.datatypes.primitive.casting.TypeCastingDemo;
 import com.andres.datatypes.primitive.character.CharacterTypeDemo;
@@ -231,34 +231,34 @@ public class App {
                     SingleDimensionArrayDemo.demonstrate();
                     ConsoleUtils.pressEnterToContinue();
                     break;
-                // case 2:
-                //     MultiDimensionArrayDemo.demonstrate();
-                //     ConsoleUtils.pressEnterToContinue();
-                //     break;
-                // case 3:
-                //     ArrayListDemo.demonstrate();
-                //     ConsoleUtils.pressEnterToContinue();
-                //     break;
-                // case 4:
-                //     HashMapDemo.demonstrate();
-                //     ConsoleUtils.pressEnterToContinue();
-                //     break;
-                // case 5:
-                //     HashSetDemo.demonstrate();
-                //     ConsoleUtils.pressEnterToContinue();
-                //     break;
-                // case 6:
-                //     QueueDemo.demonstrate();
-                //     ConsoleUtils.pressEnterToContinue();
-                //     break;
-                // case 7:
-                //     DequeDemo.demonstrate();
-                //     ConsoleUtils.pressEnterToContinue();
-                //     break;
-                // case 8:
-                //     BigDecimalDemo.demonstrate();
-                //     ConsoleUtils.pressEnterToContinue();
-                //     break;
+                case 2:
+                    MultiDimensionArrayDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 3:
+                    ArrayListDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 4:
+                    HashMapDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 5:
+                    HashSetDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 6:
+                    QueueDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 7:
+                    DequeDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 8:
+                    BigDecimalDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
                 case 0:
                     back = true;
                     break;
