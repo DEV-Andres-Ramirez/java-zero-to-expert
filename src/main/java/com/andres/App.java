@@ -1,5 +1,7 @@
 package com.andres;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,6 +52,79 @@ public class App {
     public static void main(String[] args) {
         logger.info("=== Welcome to Java Zero to Expert ===\n");
         displayMainMenu();
+
+        /*
+         * Adapt the following code to the Java base I am implementing and separate them
+         * according to the topics, which are: if, else, ternary, switch, for, foreach,
+         * while, do-while and streams (Just the basics of the latter, because we will
+         * look at it in more detail later on)
+         */
+
+        // If and else and else if
+        int age = 17;
+        if (age < 18) {
+            logger.info("You are underage.");
+        } else if (age >= 18 && age < 65) {
+            logger.info("You are an adult.");
+        } else {
+            logger.info("You are a senior citizen.");
+        }
+
+        // Ternary operator
+        String access = (age >= 18) ? "granted" : "denied";
+        logger.info("Access " + access + ".");
+
+        // Switch
+        String day = "MONDAY";
+        switch (day) {
+            case "MONDAY" -> logger.info("Start of the work week.");
+            case "FRIDAY" -> logger.info("End of the work week.");
+            case "SATURDAY" -> logger.info("Start of the weekend.");
+            case "SUNDAY" -> logger.info("End of the weekend.");
+            default -> logger.info("Midweek day.");
+        }
+
+        // For
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= 3; j++) {
+                logger.info("For loop iteration: i=" + i + ", j=" + j);
+            }
+        }
+
+        // Foreach
+        String[] fruits = { "Apple", "Banana", "Cherry" };
+        for (String fruit : fruits) {
+            logger.info("Fruit: " + fruit);
+        }
+
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+        numbers.forEach(number -> logger.info("Number: " + number));
+
+        // While
+        int count = 1;
+        while (count <= 5) {
+            logger.info("While loop count: " + count);
+            count++;
+        }
+
+        // Do-while
+        int doCount = 1;
+        do {
+            logger.info("Do-while loop count: " + doCount);
+            doCount++;
+        } while (doCount <= 5);
+
+        // Streams (basic example)
+        numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .forEach(n -> logger.info("Even number from stream: " + n));
+                // The result of the example is: 2 and 4
+
+        numbers.stream()
+                .map(n -> n * n)
+                .forEach(n -> logger.info("Squared number from stream: " + n));
+                // The result of the example is: 1, 4, 9, 16 and 25
+
     }
 
     /**
