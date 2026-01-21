@@ -1,13 +1,19 @@
 package com.andres;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.andres.console.input.InputReader;
 import com.andres.console.output.BasicOutput;
 import com.andres.console.output.FormattedOutput;
+import com.andres.controlflow.conditionals.IfElseDemo;
+import com.andres.controlflow.conditionals.SwitchDemo;
+import com.andres.controlflow.conditionals.TernaryOperatorDemo;
+import com.andres.controlflow.loops.DoWhileLoopDemo;
+import com.andres.controlflow.loops.ForEachLoopDemo;
+import com.andres.controlflow.loops.ForLoopDemo;
+import com.andres.controlflow.loops.WhileLoopDemo;
+import com.andres.controlflow.streams.StreamBasicsDemo;
 import com.andres.datatypes.composite.arrays.MultiDimensionArrayDemo;
 import com.andres.datatypes.composite.arrays.SingleDimensionArrayDemo;
 import com.andres.datatypes.composite.collections.lists.ArrayListDemo;
@@ -43,7 +49,7 @@ import com.andres.utils.ConsoleUtils;
  * </p>
  * 
  * @author Andrés
- * @version 2.0
+ * @version 2.1
  */
 public class App {
 
@@ -52,79 +58,6 @@ public class App {
     public static void main(String[] args) {
         logger.info("=== Welcome to Java Zero to Expert ===\n");
         displayMainMenu();
-
-        /*
-         * Adapt the following code to the Java base I am implementing and separate them
-         * according to the topics, which are: if, else, ternary, switch, for, foreach,
-         * while, do-while and streams (Just the basics of the latter, because we will
-         * look at it in more detail later on)
-         */
-
-        // If and else and else if
-        int age = 17;
-        if (age < 18) {
-            logger.info("You are underage.");
-        } else if (age >= 18 && age < 65) {
-            logger.info("You are an adult.");
-        } else {
-            logger.info("You are a senior citizen.");
-        }
-
-        // Ternary operator
-        String access = (age >= 18) ? "granted" : "denied";
-        logger.info("Access " + access + ".");
-
-        // Switch
-        String day = "MONDAY";
-        switch (day) {
-            case "MONDAY" -> logger.info("Start of the work week.");
-            case "FRIDAY" -> logger.info("End of the work week.");
-            case "SATURDAY" -> logger.info("Start of the weekend.");
-            case "SUNDAY" -> logger.info("End of the weekend.");
-            default -> logger.info("Midweek day.");
-        }
-
-        // For
-        for (int i = 1; i <= 5; i++) {
-            for (int j = 1; j <= 3; j++) {
-                logger.info("For loop iteration: i=" + i + ", j=" + j);
-            }
-        }
-
-        // Foreach
-        String[] fruits = { "Apple", "Banana", "Cherry" };
-        for (String fruit : fruits) {
-            logger.info("Fruit: " + fruit);
-        }
-
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
-        numbers.forEach(number -> logger.info("Number: " + number));
-
-        // While
-        int count = 1;
-        while (count <= 5) {
-            logger.info("While loop count: " + count);
-            count++;
-        }
-
-        // Do-while
-        int doCount = 1;
-        do {
-            logger.info("Do-while loop count: " + doCount);
-            doCount++;
-        } while (doCount <= 5);
-
-        // Streams (basic example)
-        numbers.stream()
-                .filter(n -> n % 2 == 0)
-                .forEach(n -> logger.info("Even number from stream: " + n));
-                // The result of the example is: 2 and 4
-
-        numbers.stream()
-                .map(n -> n * n)
-                .forEach(n -> logger.info("Squared number from stream: " + n));
-                // The result of the example is: 1, 4, 9, 16 and 25
-
     }
 
     /**
@@ -141,6 +74,7 @@ public class App {
             logger.info("| 2. Console Operations                  |");
             logger.info("| 3. Primitive Data Types                |");
             logger.info("| 4. Composite Data Types                |");
+            logger.info("| 5. Control Flow                        |");
             logger.info("| 0. Exit                                |");
             logger.info("|----------------------------------------|\n");
 
@@ -158,6 +92,9 @@ public class App {
                     break;
                 case 4:
                     executeCompositeDataTypesMenu();
+                    break;
+                case 5:
+                    executeControlFlowMenu();
                     break;
                 case 0:
                     exit = true;
@@ -332,6 +269,71 @@ public class App {
                     break;
                 case 8:
                     BigDecimalDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 0:
+                    back = true;
+                    break;
+                default:
+                    logger.warn("Invalid option. Please try again.\n");
+            }
+        }
+    }
+
+    /**
+     * Displays control flow submenu.
+     */
+    private static void executeControlFlowMenu() {
+        boolean back = false;
+
+        while (!back) {
+            logger.info("|----------------------------------------|");
+            logger.info("|     CONTROL FLOW                       |");
+            logger.info("|----------------------------------------|");
+            logger.info("| 1. If-Else Statements                  |");
+            logger.info("| 2. Ternary Operator                    |");
+            logger.info("| 3. Switch Statement                    |");
+            logger.info("| 4. For Loop                            |");
+            logger.info("| 5. For-Each Loop                       |");
+            logger.info("| 6. While Loop                          |");
+            logger.info("| 7. Do-While Loop                       |");
+            logger.info("| 8. Stream Basics                       |");
+            logger.info("| 0. Back to Main Menu                   |");
+            logger.info("|----------------------------------------|\n");
+
+            int option = ConsoleUtils.readInt("Select an option: ");
+
+            switch (option) {
+                case 1:
+                    IfElseDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 2:
+                    TernaryOperatorDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 3:
+                    SwitchDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 4:
+                    ForLoopDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 5:
+                    ForEachLoopDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 6:
+                    WhileLoopDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 7:
+                    DoWhileLoopDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 8:
+                    StreamBasicsDemo.demonstrate();
                     ConsoleUtils.pressEnterToContinue();
                     break;
                 case 0:
