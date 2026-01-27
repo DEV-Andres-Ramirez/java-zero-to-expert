@@ -29,6 +29,14 @@ import com.andres.datatypes.primitive.floatingpoint.FloatingPointTypesDemo;
 import com.andres.datatypes.primitive.integers.IntegerTypesDemo;
 import com.andres.datatypes.primitive.string.StringTypeDemo;
 import com.andres.environment.EnvironmentVariableManager;
+import com.andres.functions.methods.MethodBasicsDemo;
+import com.andres.functions.methods.MethodOverloadingDemo;
+import com.andres.functions.methods.ParameterPassingDemo;
+import com.andres.functions.methods.ReturnTypesDemo;
+import com.andres.functions.methods.VariableArgumentsDemo;
+import com.andres.functions.recursion.RecursionBasicsDemo;
+import com.andres.functions.recursion.RecursionPatternsDemo;
+import com.andres.functions.recursion.RecursionVsIterationDemo;
 import com.andres.utils.ConsoleUtils;
 
 /**
@@ -75,6 +83,7 @@ public class App {
             logger.info("| 3. Primitive Data Types                |");
             logger.info("| 4. Composite Data Types                |");
             logger.info("| 5. Control Flow                        |");
+            logger.info("| 6. Methods and Functions               |");
             logger.info("| 0. Exit                                |");
             logger.info("|----------------------------------------|\n");
 
@@ -95,6 +104,9 @@ public class App {
                     break;
                 case 5:
                     executeControlFlowMenu();
+                    break;
+                case 6:
+                    executeMethodsAndFunctionsMenu();
                     break;
                 case 0:
                     exit = true;
@@ -334,6 +346,71 @@ public class App {
                     break;
                 case 8:
                     StreamBasicsDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 0:
+                    back = true;
+                    break;
+                default:
+                    logger.warn("Invalid option. Please try again.\n");
+            }
+        }
+    }
+
+    /**
+     * Displays methods and functions submenu.
+     */
+    private static void executeMethodsAndFunctionsMenu() {
+        boolean back = false;
+
+        while (!back) {
+            logger.info("|----------------------------------------|");
+            logger.info("|     METHODS AND FUNCTIONS              |");
+            logger.info("|----------------------------------------|");
+            logger.info("| 1. Method Basics                       |");
+            logger.info("| 2. Parameter Passing                   |");
+            logger.info("| 3. Return Types                        |");
+            logger.info("| 4. Method Overloading                  |");
+            logger.info("| 5. Variable Arguments (Varargs)        |");
+            logger.info("| 6. Recursion Basics                    |");
+            logger.info("| 7. Recursion Patterns                  |");
+            logger.info("| 8. Recursion vs Iteration              |");
+            logger.info("| 0. Back to Main Menu                   |");
+            logger.info("|----------------------------------------|\n");
+
+            int option = ConsoleUtils.readInt("Select an option: ");
+
+            switch (option) {
+                case 1:
+                    MethodBasicsDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 2:
+                    ParameterPassingDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 3:
+                    ReturnTypesDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 4:
+                    MethodOverloadingDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 5:
+                    VariableArgumentsDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 6:
+                    RecursionBasicsDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 7:
+                    RecursionPatternsDemo.demonstrate();
+                    ConsoleUtils.pressEnterToContinue();
+                    break;
+                case 8:
+                    RecursionVsIterationDemo.demonstrate();
                     ConsoleUtils.pressEnterToContinue();
                     break;
                 case 0:

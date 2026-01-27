@@ -158,6 +158,18 @@ com.andres
 │       └── numeric/
 │           └── BigDecimalDemo.java  (High-precision decimal arithmetic)
 │
+├── functions/                    (Methods & Recursion)
+│   ├── methods/
+│   │   ├── MethodBasicsDemo.java
+│   │   ├── ParameterPassingDemo.java
+│   │   ├── ReturnTypesDemo.java
+│   │   ├── MethodOverloadingDemo.java
+│   │   └── VariableArgumentsDemo.java
+│   └── recursion/
+│       ├── RecursionBasicsDemo.java
+│       ├── RecursionPatternsDemo.java
+│       └── RecursionVsIterationDemo.java
+│
 ├── environment/
 │   └── EnvironmentVariableManager.java  (System environment access)
 │
@@ -266,6 +278,30 @@ All loop demos include: basic syntax, variations, nested loops, loop control (br
 |-------|-------------|------------|
 | **Stream API Basics** | filter, map, collect, forEach, lazy evaluation | `controlflow.streams.StreamBasicsDemo` |
 
+### Methods and Functions
+
+#### Method Fundamentals
+
+| Topic | Description | Demo Class |
+|-------|-------------|------------|
+| **Method Basics** | Anatomy, modifiers, static context, naming | `functions.methods.MethodBasicsDemo` |
+| **Parameter Passing** | Pass-by-value, primitives vs objects, multiple parameters | `functions.methods.ParameterPassingDemo` |
+| **Return Types** | void, primitives, objects, null handling, guard clauses | `functions.methods.ReturnTypesDemo` |
+| **Method Overloading** | Same name different signatures, type promotion | `functions.methods.MethodOverloadingDemo` |
+| **Variable Arguments** | Varargs syntax, flexibility, arrays vs varargs | `functions.methods.VariableArgumentsDemo` |
+
+**Key Topics**: Access modifiers, static vs instance context, pass-by-value semantics, immutability implications, overloading resolution.
+
+#### Recursion
+
+| Topic | Description | Demo Class |
+|-------|-------------|------------|
+| **Recursion Basics** | Base case, recursive case, call stack, stack overflow | `functions.recursion.RecursionBasicsDemo` |
+| **Recursion Patterns** | Linear, binary, tail recursion, array/string recursion | `functions.recursion.RecursionPatternsDemo` |
+| **Recursion vs Iteration** | Performance comparison, trade-offs, when to use each | `functions.recursion.RecursionVsIterationDemo` |
+
+**Key Topics**: Base case design, stack depth limitations, recursive algorithms (factorial, fibonacci, GCD), performance implications.
+
 ---
 
 ## Getting Started
@@ -328,6 +364,7 @@ The application presents an interactive menu:
 | 3. Primitive Data Types                |
 | 4. Composite Data Types                |
 | 5. Control Flow                        |
+| 6. Methods and Functions               |
 | 0. Exit                                |
 |----------------------------------------|
 ```
@@ -675,7 +712,7 @@ Created as a comprehensive, evolving knowledge base for Java developers at all s
 ---
 
 **Last Updated**: January 2026
-**Current Topics**: 28 demonstration classes across 5 major categories
+**Current Topics**: 36 demonstration classes across 6 major categories
 **Repository Status**: Active Development
 
 ---
