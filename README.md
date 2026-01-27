@@ -1,6 +1,6 @@
 # Java Zero to Expert
 
-> A comprehensive, production-quality Java knowledge base covering foundational concepts through advanced topics with extensive documentation and interactive demonstrations.
+> A comprehensive, production-quality Java code reference repository covering foundational concepts through advanced topics with extensive documentation and practical code examples.
 
 ![Java](https://img.shields.io/badge/Java-21-orange?style=flat&logo=java)
 ![Maven](https://img.shields.io/badge/Maven-3.x-blue?style=flat&logo=apache-maven)
@@ -29,22 +29,29 @@
 
 ## About This Project
 
-**Java Zero to Expert** is a comprehensive, evolving **knowledge base** designed to document Java functionality from fundamental concepts to advanced features. This is not merely a tutorial or reference guide—it is a structured, professional-grade repository that serves as:
+**Java Zero to Expert** is a comprehensive **code reference repository** designed to provide clean, professional Java code examples from fundamental concepts to advanced features. This is not a tutorial series or interactive application—it is a **GitHub-first knowledge base** where developers can:
 
-- **Educational Platform**: Progressive learning path from beginner to intermediate/advanced levels
-- **Reference Documentation**: Extensive examples and best practices for experienced developers
-- **Living Knowledge Base**: Continuously expanding collection of Java topics and patterns
+- **Browse code examples directly on GitHub** for any Java topic
+- **Reference production-quality implementations** with comprehensive documentation
+- **Learn through code** - extensive Javadoc + concise inline comments
+- **Copy-paste working examples** into their own projects
 
-### Purpose
+### Primary Use Case
 
-To provide a well-organized, extensively documented collection of Java demonstrations that covers core programming concepts through advanced modern features, all accessible via an interactive CLI menu system with hands-on examples.
+1. Navigate to repository on GitHub
+2. Browse package structure to find desired topic
+3. Open demo file and read:
+   - Comprehensive Javadoc (theory, when to use, best practices, pitfalls)
+   - Clean code examples demonstrating the concept
+   - Concise inline comments explaining key points
+4. Understand concept through code, not console output
 
 ### Target Audience
 
-- **Students** learning Java from foundational concepts
-- **Developers** transitioning to Java from other languages
-- **Experienced Engineers** seeking reference implementations and best practices
-- **AI Systems** requiring structured, well-documented codebases for analysis and learning
+- **Developers seeking quick reference implementations** of Java concepts
+- **Students learning Java** who prefer code examples over text explanations
+- **Engineers reviewing best practices** and modern Java patterns
+- **Teams establishing coding standards** with real examples
 
 ### Living Repository
 
@@ -66,14 +73,67 @@ Every topic in this repository follows a rigorous documentation standard that go
 - **Common Pitfalls**: Warnings about frequent mistakes and how to avoid them
 - **Real-World Examples**: Practical, production-relevant code demonstrations
 
-### Interactive Learning
+### Code-First Learning
 
-Rather than passive code reading, this project provides an **interactive CLI menu system** that allows developers to:
+This repository prioritizes **readable, self-documenting code** over verbose explanations:
 
-- Navigate topics by category and complexity
-- Execute demonstrations in real-time
-- Observe output and behavior patterns
-- Experiment with different scenarios
+- **Javadoc provides theory** - comprehensive documentation at class level
+- **Code demonstrates practice** - clean examples showing real usage
+- **Comments add context** - subtle, professional inline explanations
+- **No unnecessary verbosity** - every line of code has educational value
+
+**Example Structure:**
+```java
+/**
+ * Demonstrates method overloading in Java.
+ *
+ * <p><strong>What is Method Overloading?</strong></p>
+ * Method overloading allows multiple methods with the same name but different parameters.
+ * Compiler selects the appropriate method based on argument types (compile-time polymorphism).
+ *
+ * <p><strong>When to Use:</strong></p>
+ * <ul>
+ *   <li>Providing multiple ways to invoke similar functionality</li>
+ *   <li>Creating flexible APIs with optional parameters</li>
+ * </ul>
+ *
+ * <p><strong>Best Practices:</strong></p>
+ * <ul>
+ *   <li>Keep overloaded methods consistent in behavior</li>
+ *   <li>Make simpler overloads delegate to complex ones</li>
+ * </ul>
+ */
+public final class MethodOverloadingDemo {
+
+    // Access modifier examples - different visibility levels
+
+    public static int calculateArea(int width, int height) {
+        return width * height;
+    }
+
+    private static void validateInput(int value) {
+        if (value < 0) throw new IllegalArgumentException();
+    }
+
+    protected static String formatMessage(String text) {
+        return "[INFO] " + text;
+    }
+
+    // Method overloading - same name, different parameters
+
+    public static double calculateArea(double radius) {  // Circle
+        return Math.PI * radius * radius;
+    }
+
+    public static double calculateArea(double width, double height) {  // Rectangle
+        return width * height;
+    }
+
+    public static double calculateArea(double base, double height, boolean isTriangle) {
+        return isTriangle ? 0.5 * base * height : calculateArea(base, height);
+    }
+}
+```
 
 ### Progressive Complexity
 
@@ -306,73 +366,47 @@ All loop demos include: basic syntax, variations, nested loops, loop control (br
 
 ## Getting Started
 
-### Prerequisites
+### Primary Usage: Browse Code on GitHub
 
-- **Java Development Kit (JDK)**: Version 21 or higher
-- **Apache Maven**: Version 3.x
-- **Terminal/Command Line**: For executing the CLI application
+**This repository is designed to be browsed directly on GitHub:**
 
-### Installation
+1. Navigate to [`src/main/java/com/andres/`](src/main/java/com/andres/)
+2. Browse package structure by topic (datatypes, controlflow, functions, etc.)
+3. Open any demo class to see:
+   - Comprehensive class-level Javadoc documentation
+   - Clean, professional code examples
+   - Inline comments explaining key concepts
+4. Copy examples into your own projects
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/yourusername/java-zero-to-expert.git
-   cd java-zero-to-expert
-   ```
+**Example Navigation:**
+- Want to learn about recursion? → `functions/recursion/RecursionBasicsDemo.java`
+- Need HashMap examples? → `datatypes/composite/collections/maps/HashMapDemo.java`
+- Looking for Stream API usage? → `controlflow/streams/StreamBasicsDemo.java`
 
-2. **Verify Java Version**
-   ```bash
-   java -version
-   # Should output: java version "21" or higher
-   ```
+### Optional: Generate Javadoc HTML
 
-3. **Verify Maven Installation**
-   ```bash
-   mvn -version
-   ```
+For offline browsing with full documentation:
 
-### Building the Project
-
-Compile all source files:
 ```bash
-mvn clean compile
+mvn javadoc:javadoc
+open target/site/apidocs/index.html
 ```
 
-### Running the Application
+### Optional: Run the Project (Not Required)
 
-**Option 1: Maven Exec Plugin**
+While the primary use is browsing code on GitHub, the project can be executed if desired:
+
+**Prerequisites:**
+- Java 21+
+- Maven 3.x
+
+**Build and run:**
 ```bash
+mvn clean compile
 mvn exec:java -Dexec.mainClass="com.andres.App"
 ```
 
-**Option 2: Build and Run JAR**
-```bash
-mvn clean package
-java -jar target/java-zero-to-expert-1.0-SNAPSHOT.jar
-```
-
-### Navigating the Menu System
-
-The application presents an interactive menu:
-
-```
-|----------------------------------------|
-|         MAIN MENU                      |
-|----------------------------------------|
-| 1. Environment Variables               |
-| 2. Console Operations                  |
-| 3. Primitive Data Types                |
-| 4. Composite Data Types                |
-| 5. Control Flow                        |
-| 6. Methods and Functions               |
-| 0. Exit                                |
-|----------------------------------------|
-```
-
-- Select a category by entering its number
-- Navigate through sub-menus to explore specific topics
-- Each demonstration executes and displays results
-- Press Enter to return to menus
+**Note:** The CLI menu system exists for optional interactive exploration, but the real value is in reading the source code files directly
 
 ### Generating API Documentation
 
@@ -542,6 +576,22 @@ Each class includes comprehensive Javadoc with:
 
 - **Organized Sub-Methods**: Complex topics broken into focused demonstration methods
 - **Real-World Examples**: Practical scenarios beyond trivial "hello world" examples
+
+### Code Example Requirements
+
+Every demonstration must include **working code examples** that show:
+
+1. **Access modifiers in action** - if Javadoc mentions public/private/protected, show them
+2. **Return types** - void methods, methods returning primitives/objects
+3. **Parameter variations** - methods with different parameter counts and types
+4. **Real-world scenarios** - not just trivial examples
+
+**Example:**
+If the topic is "method basics", the code MUST include:
+- ✅ Examples of public, private, protected, package-private methods
+- ✅ Examples of void methods, methods returning primitives, methods returning objects
+- ✅ Methods with 0, 1, multiple parameters
+- ❌ NOT just: `logger.info("This is a method")` repeated 50 times
 
 ---
 
