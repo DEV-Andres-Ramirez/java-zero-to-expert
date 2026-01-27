@@ -1,8 +1,5 @@
 package com.andres.datatypes.primitive.bool;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Demonstrates the boolean primitive data type in Java.
  * 
@@ -52,8 +49,6 @@ import org.slf4j.LoggerFactory;
  */
 public final class BooleanTypeDemo {
 
-    private static final Logger logger = LoggerFactory.getLogger(BooleanTypeDemo.class);
-
     /**
      * Private constructor to prevent instantiation.
      */
@@ -61,139 +56,188 @@ public final class BooleanTypeDemo {
         throw new UnsupportedOperationException("Utility class cannot be instantiated");
     }
 
+    // ========== Basic Logical Operations ==========
+
     /**
-     * Demonstrates boolean type usage and operations.
+     * Performs logical AND operation.
+     *
+     * @param a First boolean operand
+     * @param b Second boolean operand
+     * @return true if both a and b are true
      */
-    public static void demonstrate() {
-        logger.info("--- Boolean Data Type ---\n");
-
-        boolean isJavaAwesome = true;
-        boolean isPythonFaster = false;
-
-        logger.info("Is Java awesome? {}", isJavaAwesome);
-        logger.info("Is Python faster? {}", isPythonFaster);
-
-        // Logical operations
-        demonstrateLogicalOperations(isJavaAwesome, isPythonFaster);
-
-        // Comparison operations
-        demonstrateComparisonOperations();
-
-        // Short-circuit evaluation
-        demonstrateShortCircuit();
-
-        // Common patterns
-        demonstrateCommonPatterns();
-
-        System.out.println();
+    public static boolean and(boolean a, boolean b) {
+        return a && b;  // Logical AND - true only if both are true
     }
 
     /**
-     * Demonstrates logical operations (AND, OR, NOT, XOR).
+     * Performs logical OR operation.
+     *
+     * @param a First boolean operand
+     * @param b Second boolean operand
+     * @return true if at least one of a or b is true
      */
-    private static void demonstrateLogicalOperations(boolean a, boolean b) {
-        logger.info("\n--- Logical Operations ---");
-
-        logger.info("a = {}, b = {}", a, b);
-        logger.info("AND (a && b): {}", a && b);
-        logger.info("OR (a || b): {}", a || b);
-        logger.info("NOT (!a): {}", !a);
-        logger.info("XOR (a ^ b): {}", a ^ b);
+    public static boolean or(boolean a, boolean b) {
+        return a || b;  // Logical OR - true if at least one is true
     }
 
     /**
-     * Demonstrates comparison operations that return boolean.
+     * Performs logical NOT operation.
+     *
+     * @param value Boolean value to negate
+     * @return Inverted boolean value
      */
-    private static void demonstrateComparisonOperations() {
-        logger.info("\n--- Comparison Operations ---");
-
-        int x = 10;
-        int y = 20;
-
-        logger.info("x = {}, y = {}", x, y);
-        logger.info("x > y: {}", x > y);
-        logger.info("x < y: {}", x < y);
-        logger.info("x >= y: {}", x >= y);
-        logger.info("x <= y: {}", x <= y);
-        logger.info("x == y: {}", x == y);
-        logger.info("x != y: {}", x != y);
+    public static boolean not(boolean value) {
+        return !value;  // Logical NOT - inverts the value
     }
 
     /**
-     * Demonstrates short-circuit evaluation behavior.
-     * 
+     * Performs logical XOR (exclusive OR) operation.
+     *
+     * @param a First boolean operand
+     * @param b Second boolean operand
+     * @return true if exactly one of a or b is true (not both)
+     */
+    public static boolean xor(boolean a, boolean b) {
+        return a ^ b;  // Logical XOR - true if values differ
+    }
+
+    // ========== Comparison Operations ==========
+
+    /**
+     * Checks if first value is greater than second.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return true if a > b
+     */
+    public static boolean isGreater(int a, int b) {
+        return a > b;
+    }
+
+    /**
+     * Checks if first value is less than second.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return true if a < b
+     */
+    public static boolean isLess(int a, int b) {
+        return a < b;
+    }
+
+    /**
+     * Checks if two values are equal.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return true if a equals b
+     */
+    public static boolean areEqual(int a, int b) {
+        return a == b;
+    }
+
+    /**
+     * Checks if value is within specified range (inclusive).
+     *
+     * @param value Value to check
+     * @param min   Minimum value (inclusive)
+     * @param max   Maximum value (inclusive)
+     * @return true if value is between min and max
+     */
+    public static boolean isInRange(int value, int min, int max) {
+        return value >= min && value <= max;
+    }
+
+    // ========== Real-World Examples ==========
+
+    /**
+     * Safely checks if string is non-empty using short-circuit evaluation.
      * <p>
-     * <strong>Short-circuit evaluation:</strong>
+     * Short-circuit: if text is null, length() is never called,
+     * preventing NullPointerException.
      * </p>
-     * <p>
-     * With && operator, if first operand is false, second is not evaluated.
-     * With || operator, if first operand is true, second is not evaluated.
-     * </p>
-     * 
-     * <p>
-     * This is important for performance and avoiding null pointer exceptions.
-     * </p>
+     *
+     * @param text String to check
+     * @return true if text is not null and has length > 0
      */
-    private static void demonstrateShortCircuit() {
-        logger.info("\n--- Short-Circuit Evaluation ---");
-
-        String text = null;
-
-        // Short-circuit prevents NullPointerException
-        boolean result = (text != null) && (text.length() > 0);
-        logger.info("Safe null check: text != null && text.length() > 0 = {}", result);
-        logger.info("text.length() was NOT evaluated because text is null");
-
-        // Without short-circuit, this would throw NullPointerException:
-        // boolean unsafe = (text.length() > 0) && (text != null); // DANGER!
-
-        logger.info("\nShort-circuit with OR:");
-        boolean isValid = true;
-        boolean expensiveCheck = false;
-        boolean combined = isValid || expensiveCheck;
-        logger.info("isValid || expensiveCheck = {} (second not evaluated)", combined);
+    public static boolean isNonEmptyString(String text) {
+        // Short-circuit: if text is null, length() is never evaluated
+        return (text != null) && (text.length() > 0);
     }
 
     /**
-     * Demonstrates common boolean patterns and anti-patterns.
+     * Checks if user can access a resource (authorization example).
+     * <p>
+     * Both conditions must be true: user must be authenticated AND have permission.
+     * </p>
+     *
+     * @param isAuthenticated Whether user is authenticated
+     * @param hasPermission   Whether user has required permission
+     * @return true if user can access the resource
      */
-    private static void demonstrateCommonPatterns() {
-        logger.info("\n--- Common Patterns ---");
+    public static boolean canAccessResource(boolean isAuthenticated, boolean hasPermission) {
+        return isAuthenticated && hasPermission;  // Both required
+    }
 
-        boolean isAuthenticated = true;
+    /**
+     * Validates if age is within valid human age range.
+     *
+     * @param age Age to validate
+     * @return true if age is between 0 and 150
+     */
+    public static boolean isValidAge(int age) {
+        return age >= 0 && age <= 150;
+    }
 
-        // GOOD: Direct use
-        if (isAuthenticated) {
-            logger.info("✓ Good: if (isAuthenticated)");
+    /**
+     * Checks if password meets minimum strength requirements.
+     * <p>
+     * Requirement: password must be at least 8 characters long.
+     * </p>
+     *
+     * @param password Password to validate
+     * @return true if password meets requirements
+     */
+    public static boolean isPasswordStrong(String password) {
+        return password != null && password.length() >= 8;
+    }
+
+    // ========== Anti-Pattern Demonstration ==========
+
+    /**
+     * Demonstrates correct and incorrect boolean usage patterns.
+     * <p>
+     * <strong>Anti-patterns to avoid:</strong>
+     * </p>
+     * <ul>
+     * <li>{@code if (flag == true)} - redundant, just use {@code if (flag)}</li>
+     * <li>{@code return flag ? true : false} - redundant, just use {@code return flag}</li>
+     * <li>{@code if (flag) return true; else return false;} - use direct return</li>
+     * </ul>
+     *
+     * @param flag Boolean value to check
+     * @return The flag value directly
+     */
+    public static boolean checkCondition(boolean flag) {
+        // GOOD: Direct use in condition
+        if (flag) {
+            // Do something when flag is true
         }
 
-        // BAD: Redundant comparison
-        if (isAuthenticated == true) { // NOSONAR - intentional anti-pattern
-            logger.warn("✗ Avoid: if (isAuthenticated == true) - redundant");
-        }
+        // BAD: Redundant comparison (anti-pattern)
+        // if (flag == true) { ... }  // Avoid this!
 
-        // GOOD: Boolean method return
-        boolean result = checkCondition();
-        logger.info("✓ Good: Direct boolean return: {}", result);
+        // GOOD: Direct return
+        return flag;
 
-        // BAD: Unnecessary ternary
-        boolean badResult = checkCondition() ? true : false; // NOSONAR - intentional anti-pattern
-        logger.warn("✗ Avoid: condition ? true : false - just return condition: {}", badResult);
-    }
+        // BAD: Unnecessary ternary (anti-pattern)
+        // return flag ? true : false;  // Just return flag!
 
-    /**
-     * Example method returning boolean directly.
-     */
-    private static boolean checkCondition() {
-        int value = 10;
-        // GOOD: Direct return of comparison
-        return value > 5;
-
-        // BAD: Unnecessary if-else
-        // if (value > 5) {
-        // return true;
+        // BAD: Unnecessary if-else (anti-pattern)
+        // if (flag) {
+        //     return true;
         // } else {
-        // return false;
+        //     return false;
         // }
     }
 }

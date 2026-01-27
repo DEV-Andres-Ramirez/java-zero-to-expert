@@ -70,141 +70,217 @@ public final class TypeCastingDemo {
         throw new UnsupportedOperationException("Utility class cannot be instantiated");
     }
 
+    // ========== Widening Casting (Automatic) ==========
+
     /**
-     * Demonstrates type casting with examples.
+     * Widens byte to int (automatic, no data loss).
+     *
+     * @param value Byte value
+     * @return Value as int
      */
-    public static void demonstrate() {
-        logger.info("--- Type Casting (Conversion) ---\n");
-
-        // Widening (automatic)
-        demonstrateWideningCast();
-
-        // Narrowing (explicit)
-        demonstrateNarrowingCast();
-
-        // Overflow examples
-        demonstrateOverflow();
-
-        // Integer division pitfall
-        demonstrateIntegerDivisionPitfall();
-
-        System.out.println();
+    public static int byteToInt(byte value) {
+        return value;  // Automatic widening: byte → int
     }
 
     /**
-     * Demonstrates widening (implicit) casting.
-     * 
-     * <p>
-     * <strong>Widening Casting:</strong> Automatic conversion from smaller
-     * to larger type. No data loss occurs.
-     * </p>
+     * Widens int to long (automatic, no data loss).
+     *
+     * @param value Int value
+     * @return Value as long
      */
-    private static void demonstrateWideningCast() {
-        logger.info("--- Widening Casting (Implicit) ---");
-
-        byte byteNum = 100;
-        int intNum = byteNum; // Automatic: byte → int
-        long longNum = intNum; // Automatic: int → long
-        float floatNum = longNum; // Automatic: long → float
-        double doubleNum = floatNum; // Automatic: float → double
-
-        logger.info("byte {} → int {} → long {} → float {} → double {}",
-                byteNum, intNum, longNum, floatNum, doubleNum);
-
-        // No data loss in widening
-        logger.info("No data loss in widening conversions");
+    public static long intToLong(int value) {
+        return value;  // Automatic widening: int → long
     }
 
     /**
-     * Demonstrates narrowing (explicit) casting.
-     * 
-     * <p>
-     * <strong>Narrowing Casting:</strong> Manual conversion from larger
-     * to smaller type. May lose precision or cause overflow.
-     * </p>
+     * Widens long to double (automatic, no data loss).
+     *
+     * @param value Long value
+     * @return Value as double
      */
-    private static void demonstrateNarrowingCast() {
-        logger.info("\n--- Narrowing Casting (Explicit) ---");
+    public static double longToDouble(long value) {
+        return value;  // Automatic widening: long → double
+    }
 
-        double largeDouble = 9.78;
-        int convertedInt = (int) largeDouble; // Loses decimal part
+    // ========== Narrowing Casting (Explicit) ==========
 
-        logger.info("double {} → int {} (decimals lost)", largeDouble, convertedInt);
-
-        // Float to int
-        float floatValue = 123.456f;
-        int intValue = (int) floatValue;
-        logger.info("float {} → int {} (truncation, not rounding)", floatValue, intValue);
-
-        // Long to int (safe example)
-        long longValue = 1000L;
-        int safeInt = (int) longValue;
-        logger.info("long {} → int {} (safe, within range)", longValue, safeInt);
+    /**
+     * Narrows double to int (explicit, loses decimal part).
+     * <p>
+     * <strong>Warning:</strong> Truncates decimals, does not round.
+     * </p>
+     *
+     * @param value Double value
+     * @return Value as int (decimals truncated)
+     */
+    public static int doubleToInt(double value) {
+        return (int) value;  // Explicit narrowing: truncates decimals
     }
 
     /**
-     * Demonstrates overflow in narrowing conversions.
-     * 
+     * Narrows float to int (explicit, loses decimal part).
+     *
+     * @param value Float value
+     * @return Value as int (decimals truncated)
+     */
+    public static int floatToInt(float value) {
+        return (int) value;  // Explicit narrowing
+    }
+
+    /**
+     * Narrows int to byte (explicit, may overflow).
      * <p>
-     * <strong>Warning:</strong> Narrowing to a type that cannot hold
-     * the value results in overflow (wraparound behavior).
+     * <strong>Warning:</strong> If value exceeds byte range (-128 to 127),
+     * overflow occurs (wraparound behavior).
+     * </p>
+     *
+     * @param value Int value
+     * @return Value as byte (may overflow)
+     */
+    public static byte intToByte(int value) {
+        return (byte) value;  // May overflow if value > 127 or < -128
+    }
+
+    // ========== Safe Casting with Validation ==========
+
+    /**
+     * Safely converts int to byte with range validation.
+     * <p>
+     * Throws exception if value is out of byte range to prevent silent overflow.
+     * </p>
+     *
+     * @param value Int value to convert
+     * @return Value as byte
+     * @throws IllegalArgumentException if value is out of byte range
+     */
+    public static byte safeIntToByte(int value) {
+        if (value < Byte.MIN_VALUE || value > Byte.MAX_VALUE) {
+            throw new IllegalArgumentException(
+                    "Value " + value + " out of byte range [" +
+                            Byte.MIN_VALUE + ", " + Byte.MAX_VALUE + "]"
+            );
+        }
+        return (byte) value;
+    }
+
+    /**
+     * Safely converts int to short with range validation.
+     *
+     * @param value Int value to convert
+     * @return Value as short
+     * @throws IllegalArgumentException if value is out of short range
+     */
+    public static short safeIntToShort(int value) {
+        if (value < Short.MIN_VALUE || value > Short.MAX_VALUE) {
+            throw new IllegalArgumentException(
+                    "Value " + value + " out of short range [" +
+                            Short.MIN_VALUE + ", " + Short.MAX_VALUE + "]"
+            );
+        }
+        return (short) value;
+    }
+
+    /**
+     * Safely converts long to int using Math.toIntExact().
+     * <p>
+     * Throws ArithmeticException on overflow instead of silently wrapping.
+     * </p>
+     *
+     * @param value Long value to convert
+     * @return Value as int
+     * @throws ArithmeticException if value overflows int range
+     */
+    public static int safeLongToInt(long value) {
+        return Math.toIntExact(value);  // Throws exception on overflow
+    }
+
+    // ========== Real-World Examples ==========
+
+    /**
+     * Converts temperature from Celsius to Fahrenheit.
+     *
+     * @param celsius Temperature in Celsius
+     * @return Temperature in Fahrenheit
+     */
+    public static double celsiusToFahrenheit(double celsius) {
+        return (celsius * 9.0 / 5.0) + 32.0;
+    }
+
+    /**
+     * Calculates percentage as double from integer values.
+     *
+     * @param part  Partial value
+     * @param total Total value
+     * @return Percentage (0-100)
+     */
+    public static double calculatePercentage(int part, int total) {
+        if (total == 0) return 0.0;
+        return ((double) part / total) * 100.0;  // Cast before division
+    }
+
+    // ========== Demonstrations (Educational - with logging) ==========
+
+    /**
+     * Demonstrates overflow behavior in narrowing conversions.
+     * <p>
+     * <strong>Educational purpose:</strong> Shows what happens when narrowing
+     * to a type that cannot hold the value (wraparound behavior).
      * </p>
      */
-    private static void demonstrateOverflow() {
-        logger.info("\n--- Overflow in Narrowing ---");
+    public static void demonstrateOverflow() {
+        logger.warn("=== OVERFLOW DEMONSTRATION ===");
 
         int largeInt = 130;
-        byte convertedByte = (byte) largeInt; // Overflow!
+        byte convertedByte = (byte) largeInt;
 
-        logger.info("int {} → byte {} (overflow occurred)", largeInt, convertedByte);
-        logger.warn("WARNING: Value exceeded byte range ({} to {})",
-                Byte.MIN_VALUE, Byte.MAX_VALUE);
-        logger.warn("Result wrapped around to {}", convertedByte);
+        logger.warn("int {} → byte {} (overflow occurred)", largeInt, convertedByte);
+        logger.warn("Byte range: {} to {}", Byte.MIN_VALUE, Byte.MAX_VALUE);
+        logger.warn("Value 130 wrapped around to {}", convertedByte);
 
-        // Safe alternative: validate range first
-        logger.info("\nSafe approach - validate before casting:");
+        logger.info("\nSafe alternative using validation:");
         int valueToConvert = 100;
         if (valueToConvert >= Byte.MIN_VALUE && valueToConvert <= Byte.MAX_VALUE) {
             byte safeByte = (byte) valueToConvert;
-            logger.info("Safe conversion: {} → byte {}", valueToConvert, safeByte);
-        } else {
-            logger.error("Value {} out of byte range, conversion not safe", valueToConvert);
+            logger.info("✓ Safe: {} → byte {}", valueToConvert, safeByte);
         }
 
-        // Using Math.toIntExact for safe long-to-int
+        logger.info("\nSafe alternative using Math.toIntExact():");
         try {
             long hugeLong = 3_000_000_000L;
-            int result = Math.toIntExact(hugeLong); // Throws exception if overflow
-            logger.info("Safe conversion: {}", result);
+            int result = Math.toIntExact(hugeLong);
+            logger.info("Result: {}", result);
         } catch (ArithmeticException e) {
-            logger.error("Math.toIntExact() prevented overflow: {}", e.getMessage());
+            logger.error("✓ Overflow detected and prevented: {}", e.getMessage());
         }
+
+        logger.warn("===========================\n");
     }
 
     /**
-     * Demonstrates common integer division pitfall with casting.
-     * 
+     * Demonstrates integer division pitfall with casting.
      * <p>
-     * <strong>Pitfall:</strong> Casting result of integer division doesn't
-     * recover lost precision. Cast operands BEFORE division.
+     * <strong>Educational purpose:</strong> Shows that casting AFTER division
+     * doesn't recover lost precision. Cast operands BEFORE division.
      * </p>
      */
-    private static void demonstrateIntegerDivisionPitfall() {
-        logger.info("\n--- Integer Division Pitfall ---");
+    public static void demonstrateIntegerDivisionPitfall() {
+        logger.warn("=== INTEGER DIVISION PITFALL ===");
 
         int a = 5;
         int b = 2;
 
-        // Wrong: casting after division (precision already lost)
-        double wrong = (double) (a / b); // a / b = 2 (int), then cast to 2.0
-        logger.info("Wrong: (double)(a / b) = {} (precision lost)", wrong);
+        // Wrong: cast after division (precision already lost)
+        double wrong = (double) (a / b);  // a/b = 2 (int), then cast to 2.0
+        logger.warn("❌ Wrong: (double)(5 / 2) = {} (precision lost)", wrong);
 
         // Right: cast before division
-        double right = (double) a / b; // a cast to double, then division
-        logger.info("Right: (double)a / b = {} (precision preserved)", right);
+        double right = (double) a / b;  // a cast to double, then division
+        logger.info("✓ Right: (double)5 / 2 = {} (precision preserved)", right);
 
         // Alternative: use double literals
         double alternative = 5.0 / 2;
-        logger.info("Alternative: 5.0 / 2 = {}", alternative);
+        logger.info("✓ Alternative: 5.0 / 2 = {}", alternative);
+
+        logger.warn("================================\n");
     }
 }

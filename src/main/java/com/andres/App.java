@@ -18,7 +18,7 @@ package com.andres;
  * </p>
  * 
  * @author Andrés
- * @version 2.1
+ * @version 1.0.0
  */
 public class App {
 

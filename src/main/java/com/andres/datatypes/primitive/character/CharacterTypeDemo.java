@@ -1,8 +1,5 @@
 package com.andres.datatypes.primitive.character;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Demonstrates the character primitive data type in Java.
  * 
@@ -50,8 +47,6 @@ import org.slf4j.LoggerFactory;
  */
 public final class CharacterTypeDemo {
 
-    private static final Logger logger = LoggerFactory.getLogger(CharacterTypeDemo.class);
-
     /**
      * Private constructor to prevent instantiation.
      */
@@ -59,76 +54,270 @@ public final class CharacterTypeDemo {
         throw new UnsupportedOperationException("Utility class cannot be instantiated");
     }
 
+    // ========== Character Classification ==========
+
     /**
-     * Demonstrates character type usage and operations.
+     * Checks if character is a letter.
+     *
+     * @param ch Character to check
+     * @return true if ch is a letter (A-Z, a-z, or Unicode letter)
      */
-    public static void demonstrate() {
-        logger.info("--- Character Data Type ---\n");
-
-        char letter = 'A';
-        char digit = '5';
-        char symbol = '@';
-        char unicode = '\u0041'; // 'A' in Unicode
-
-        logger.info("Letter: {}", letter);
-        logger.info("Digit: {}", digit);
-        logger.info("Symbol: {}", symbol);
-        logger.info("Unicode (\\u0041): {}", unicode);
-
-        // Unicode code point (numeric value)
-        logger.info("\nUnicode code point of 'A': {}", (int) letter);
-        logger.info("Size: {} bits, Range: {} to {}",
-                Character.SIZE, (int) Character.MIN_VALUE, (int) Character.MAX_VALUE);
-
-        // Character utility methods
-        demonstrateCharacterMethods();
-
-        // Character comparisons
-        demonstrateComparisons();
-
-        System.out.println();
+    public static boolean isLetter(char ch) {
+        return Character.isLetter(ch);
     }
 
     /**
-     * Demonstrates utility methods from Character wrapper class.
+     * Checks if character is a digit.
+     *
+     * @param ch Character to check
+     * @return true if ch is a digit (0-9)
      */
-    private static void demonstrateCharacterMethods() {
-        logger.info("\n--- Character Utility Methods ---");
-
-        char ch = 'A';
-
-        logger.info("Character: {}", ch);
-        logger.info("isLetter(): {}", Character.isLetter(ch));
-        logger.info("isDigit(): {}", Character.isDigit(ch));
-        logger.info("isUpperCase(): {}", Character.isUpperCase(ch));
-        logger.info("isLowerCase(): {}", Character.isLowerCase(ch));
-        logger.info("toLowerCase(): {}", Character.toLowerCase(ch));
-        logger.info("toUpperCase(): {}", Character.toUpperCase(ch));
-
-        char space = ' ';
-        logger.info("\nCharacter: '{}' (space)", space);
-        logger.info("isWhitespace(): {}", Character.isWhitespace(space));
+    public static boolean isDigit(char ch) {
+        return Character.isDigit(ch);
     }
 
     /**
-     * Demonstrates character comparisons.
+     * Checks if character is whitespace.
+     *
+     * @param ch Character to check
+     * @return true if ch is whitespace (space, tab, newline, etc.)
      */
-    private static void demonstrateComparisons() {
-        logger.info("\n--- Character Comparisons ---");
+    public static boolean isWhitespace(char ch) {
+        return Character.isWhitespace(ch);
+    }
 
-        char a = 'A';
-        char b = 'B';
-        char lowerA = 'a';
+    /**
+     * Checks if character is uppercase letter.
+     *
+     * @param ch Character to check
+     * @return true if ch is uppercase letter
+     */
+    public static boolean isUpperCase(char ch) {
+        return Character.isUpperCase(ch);
+    }
 
-        logger.info("'A' == 'A': {}", a == 'A');
-        logger.info("'A' == 'B': {}", a == b);
-        logger.info("'A' == 'a': {}", a == lowerA);
-        logger.info("'A' < 'B': {}", a < b);
+    /**
+     * Checks if character is lowercase letter.
+     *
+     * @param ch Character to check
+     * @return true if ch is lowercase letter
+     */
+    public static boolean isLowerCase(char ch) {
+        return Character.isLowerCase(ch);
+    }
 
-        // Numeric comparison (based on Unicode values)
-        logger.info("\nNumeric values:");
-        logger.info("'A' = {}", (int) a);
-        logger.info("'B' = {}", (int) b);
-        logger.info("'a' = {}", (int) lowerA);
+    /**
+     * Checks if character is alphanumeric (letter or digit).
+     *
+     * @param ch Character to check
+     * @return true if ch is letter or digit
+     */
+    public static boolean isAlphanumeric(char ch) {
+        return Character.isLetterOrDigit(ch);
+    }
+
+    // ========== Case Conversion ==========
+
+    /**
+     * Converts character to uppercase.
+     *
+     * @param ch Character to convert
+     * @return Uppercase version of ch
+     */
+    public static char toUpperCase(char ch) {
+        return Character.toUpperCase(ch);
+    }
+
+    /**
+     * Converts character to lowercase.
+     *
+     * @param ch Character to convert
+     * @return Lowercase version of ch
+     */
+    public static char toLowerCase(char ch) {
+        return Character.toLowerCase(ch);
+    }
+
+    // ========== Unicode Conversion ==========
+
+    /**
+     * Gets Unicode code point value of character.
+     *
+     * @param ch Character
+     * @return Unicode code point (numeric value)
+     */
+    public static int charToCodePoint(char ch) {
+        return (int) ch;
+    }
+
+    /**
+     * Converts code point to character.
+     *
+     * @param codePoint Unicode code point
+     * @return Character corresponding to code point
+     */
+    public static char codePointToChar(int codePoint) {
+        return (char) codePoint;
+    }
+
+    // ========== Character Comparison ==========
+
+    /**
+     * Checks if first character is greater than second.
+     * <p>
+     * Compares based on Unicode values.
+     * </p>
+     *
+     * @param a First character
+     * @param b Second character
+     * @return true if a > b (by Unicode value)
+     */
+    public static boolean isGreater(char a, char b) {
+        return a > b;
+    }
+
+    /**
+     * Checks if first character is less than second.
+     *
+     * @param a First character
+     * @param b Second character
+     * @return true if a < b (by Unicode value)
+     */
+    public static boolean isLess(char a, char b) {
+        return a < b;
+    }
+
+    /**
+     * Checks if two characters are equal.
+     *
+     * @param a First character
+     * @param b Second character
+     * @return true if a equals b
+     */
+    public static boolean areEqual(char a, char b) {
+        return a == b;
+    }
+
+    // ========== Real-World Examples ==========
+
+    /**
+     * Checks if password contains at least one uppercase letter.
+     * <p>
+     * Password strength requirement: must have uppercase character.
+     * </p>
+     *
+     * @param password Password to check
+     * @return true if password contains at least one uppercase letter
+     */
+    public static boolean hasUppercase(String password) {
+        if (password == null || password.isEmpty()) {
+            return false;
+        }
+
+        for (char ch : password.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if password contains at least one digit.
+     * <p>
+     * Password strength requirement: must have numeric character.
+     * </p>
+     *
+     * @param password Password to check
+     * @return true if password contains at least one digit
+     */
+    public static boolean hasDigit(String password) {
+        if (password == null || password.isEmpty()) {
+            return false;
+        }
+
+        for (char ch : password.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if password contains at least one special character.
+     * <p>
+     * Special character: not letter, not digit, not whitespace.
+     * </p>
+     *
+     * @param password Password to check
+     * @return true if password contains special character
+     */
+    public static boolean hasSpecialChar(String password) {
+        if (password == null || password.isEmpty()) {
+            return false;
+        }
+
+        for (char ch : password.toCharArray()) {
+            if (!Character.isLetterOrDigit(ch) && !Character.isWhitespace(ch)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Counts number of letters in string.
+     *
+     * @param text Text to analyze
+     * @return Number of letter characters
+     */
+    public static int countLetters(String text) {
+        if (text == null) return 0;
+
+        int count = 0;
+        for (char ch : text.toCharArray()) {
+            if (Character.isLetter(ch)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Counts number of digits in string.
+     *
+     * @param text Text to analyze
+     * @return Number of digit characters
+     */
+    public static int countDigits(String text) {
+        if (text == null) return 0;
+
+        int count = 0;
+        for (char ch : text.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Checks if string contains only alphanumeric characters.
+     *
+     * @param text Text to check
+     * @return true if all characters are letters or digits
+     */
+    public static boolean isAlphanumericString(String text) {
+        if (text == null || text.isEmpty()) {
+            return false;
+        }
+
+        for (char ch : text.toCharArray()) {
+            if (!Character.isLetterOrDigit(ch)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -63,7 +63,7 @@ import org.slf4j.LoggerFactory;
 public final class FloatingPointTypesDemo {
 
     private static final Logger logger = LoggerFactory.getLogger(FloatingPointTypesDemo.class);
-    private static final double EPSILON = 1e-10; // For floating-point comparisons
+    private static final double EPSILON = 1e-10;  // Standard epsilon for comparison
 
     /**
      * Private constructor to prevent instantiation.
@@ -72,94 +72,228 @@ public final class FloatingPointTypesDemo {
         throw new UnsupportedOperationException("Utility class cannot be instantiated");
     }
 
+    // ========== Basic Operations ==========
+
     /**
-     * Demonstrates floating-point types with examples and precision issues.
+     * Adds two double values.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Sum of a and b
      */
-    public static void demonstrate() {
-        logger.info("--- Floating-Point Data Types ---\n");
-
-        // float: 32 bits, single precision
-        float floatValue = 3.14159f; // 'f' suffix required
-        logger.info("float - Value: {}, Size: {} bits, Precision: ~6-7 digits",
-                floatValue, Float.SIZE);
-
-        // double: 64 bits, double precision (RECOMMENDED TYPE)
-        double doubleValue = 3.141592653589793;
-        logger.info("double - Value: {}, Size: {} bits, Precision: ~15-16 digits",
-                doubleValue, Double.SIZE);
-
-        // Precision problem demonstration
-        demonstratePrecisionIssues();
-
-        // Special values
-        demonstrateSpecialValues();
-
-        // Proper comparison
-        demonstrateProperComparison();
-
-        System.out.println();
+    public static double add(double a, double b) {
+        return a + b;
     }
 
     /**
-     * Demonstrates the precision problem inherent in floating-point arithmetic.
+     * Subtracts second value from first.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Difference a - b
      */
-    private static void demonstratePrecisionIssues() {
-        logger.info("\n--- Precision Issues ---");
+    public static double subtract(double a, double b) {
+        return a - b;
+    }
+
+    /**
+     * Multiplies two double values.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Product of a and b
+     */
+    public static double multiply(double a, double b) {
+        return a * b;
+    }
+
+    /**
+     * Divides first value by second.
+     *
+     * @param a Dividend
+     * @param b Divisor
+     * @return Quotient a / b
+     */
+    public static double divide(double a, double b) {
+        return a / b;
+    }
+
+    // ========== Proper Floating-Point Comparison ==========
+
+    /**
+     * Compares two doubles for equality using epsilon tolerance.
+     * <p>
+     * <strong>Why epsilon comparison?</strong>
+     * Due to floating-point precision limitations, direct == comparison often fails.
+     * Use epsilon to check if values are "close enough".
+     * </p>
+     *
+     * @param a First value
+     * @param b Second value
+     * @return true if |a - b| < epsilon
+     */
+    public static boolean areEqual(double a, double b) {
+        return Math.abs(a - b) < EPSILON;
+    }
+
+    /**
+     * Compares two doubles using custom epsilon.
+     *
+     * @param a       First value
+     * @param b       Second value
+     * @param epsilon Tolerance for comparison
+     * @return true if |a - b| < epsilon
+     */
+    public static boolean areEqual(double a, double b, double epsilon) {
+        return Math.abs(a - b) < epsilon;
+    }
+
+    // ========== Special Values ==========
+
+    /**
+     * Checks if value is infinite (positive or negative).
+     *
+     * @param value Value to check
+     * @return true if value is infinite
+     */
+    public static boolean isInfinite(double value) {
+        return Double.isInfinite(value);
+    }
+
+    /**
+     * Checks if value is NaN (Not a Number).
+     *
+     * @param value Value to check
+     * @return true if value is NaN
+     */
+    public static boolean isNaN(double value) {
+        return Double.isNaN(value);
+    }
+
+    /**
+     * Divides by zero to produce Infinity.
+     *
+     * @param value Value to divide by zero
+     * @return Positive or negative Infinity
+     */
+    public static double divideByZero(double value) {
+        return value / 0.0;  // Returns ±Infinity
+    }
+
+    /**
+     * Calculates square root of negative number (produces NaN).
+     *
+     * @param value Negative value
+     * @return NaN (Not a Number)
+     */
+    public static double sqrtNegative(double value) {
+        return Math.sqrt(value);  // Returns NaN for negative values
+    }
+
+    // ========== Real-World Examples ==========
+
+    /**
+     * Calculates average of values.
+     *
+     * @param values Values to average
+     * @return Average value, or 0.0 if no values
+     */
+    public static double calculateAverage(double... values) {
+        if (values.length == 0) {
+            return 0.0;
+        }
+
+        double sum = 0.0;
+        for (double value : values) {
+            sum += value;
+        }
+        return sum / values.length;
+    }
+
+    /**
+     * Calculates weighted average.
+     *
+     * @param values  Values to average
+     * @param weights Weights for each value
+     * @return Weighted average
+     * @throws IllegalArgumentException if arrays have different lengths
+     */
+    public static double calculateWeightedAverage(double[] values, double[] weights) {
+        if (values.length != weights.length) {
+            throw new IllegalArgumentException("Values and weights must have same length");
+        }
+
+        double weightedSum = 0.0;
+        double totalWeight = 0.0;
+
+        for (int i = 0; i < values.length; i++) {
+            weightedSum += values[i] * weights[i];
+            totalWeight += weights[i];
+        }
+
+        return totalWeight == 0 ? 0.0 : weightedSum / totalWeight;
+    }
+
+    /**
+     * Calculates distance between two points.
+     *
+     * @param x1 X coordinate of first point
+     * @param y1 Y coordinate of first point
+     * @param x2 X coordinate of second point
+     * @param y2 Y coordinate of second point
+     * @return Euclidean distance
+     */
+    public static double calculateDistance(double x1, double y1, double x2, double y2) {
+        double dx = x2 - x1;
+        double dy = y2 - y1;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    /**
+     * Calculates compound interest.
+     *
+     * @param principal   Initial amount
+     * @param rate        Annual interest rate (e.g., 0.05 for 5%)
+     * @param years       Number of years
+     * @param timesPerYear Compounding frequency per year
+     * @return Final amount after compound interest
+     */
+    public static double calculateCompoundInterest(double principal, double rate,
+                                                   int years, int timesPerYear) {
+        return principal * Math.pow(1 + rate / timesPerYear, timesPerYear * years);
+    }
+
+    // ========== Demonstrations (Educational - with logging) ==========
+
+    /**
+     * Demonstrates the precision issue inherent in floating-point arithmetic.
+     * <p>
+     * <strong>Educational purpose:</strong> Shows why you should NEVER use
+     * float/double for monetary calculations. Use BigDecimal instead.
+     * </p>
+     */
+    public static void demonstratePrecisionIssue() {
+        logger.warn("=== FLOATING-POINT PRECISION ISSUE ===");
 
         double result = 0.1 + 0.2;
-        logger.info("0.1 + 0.2 = {} (expected: 0.3)", result);
-        logger.warn("WARNING: Do NOT use float/double for money. Use BigDecimal.");
+        logger.warn("0.1 + 0.2 = {} (expected: 0.3)", result);
+        logger.warn("Result is NOT exactly 0.3 due to binary representation");
 
-        // More examples
-        double a = 0.1;
-        double b = 0.2;
-        double c = 0.3;
+        logger.error("NEVER use float/double for money - use BigDecimal!");
 
-        logger.info("\nDirect comparison: 0.1 + 0.2 == 0.3? {}", (a + b) == c);
-        logger.info("Actual values: {} vs {}", (a + b), c);
-    }
-
-    /**
-     * Demonstrates special floating-point values.
-     */
-    private static void demonstrateSpecialValues() {
-        logger.info("\n--- Special Values ---");
-
-        logger.info("Positive Infinity: {}", Double.POSITIVE_INFINITY);
-        logger.info("Negative Infinity: {}", Double.NEGATIVE_INFINITY);
-        logger.info("NaN (Not a Number): {}", Double.NaN);
-
-        // Operations resulting in special values
-        logger.info("\nOperations producing special values:");
-        logger.info("1.0 / 0.0 = {}", 1.0 / 0.0); // Positive Infinity
-        logger.info("-1.0 / 0.0 = {}", -1.0 / 0.0); // Negative Infinity
-        logger.info("0.0 / 0.0 = {}", 0.0 / 0.0); // NaN
-        logger.info("Math.sqrt(-1) = {}", Math.sqrt(-1)); // NaN
-    }
-
-    /**
-     * Demonstrates proper floating-point comparison using epsilon.
-     * 
-     * <p>
-     * <strong>Why use epsilon?</strong>
-     * </p>
-     * <p>
-     * Due to precision limitations, direct equality (==) often fails.
-     * Instead, check if values are "close enough" within a tolerance (epsilon).
-     * </p>
-     */
-    private static void demonstrateProperComparison() {
-        logger.info("\n--- Proper Floating-Point Comparison ---");
-
+        // Direct comparison fails
         double a = 0.1 + 0.2;
         double b = 0.3;
+        logger.info("Direct comparison (0.1 + 0.2) == 0.3: {} (FAILS)", a == b);
+        logger.info("Actual value: {}", a);
+        logger.info("Expected: {}", b);
+        logger.info("Difference: {}", Math.abs(a - b));
 
-        // Wrong way (direct comparison)
-        logger.info("Wrong way - Direct comparison (a == b): {}", a == b);
+        // Epsilon comparison works
+        boolean equal = areEqual(a, b);
+        logger.info("\nEpsilon comparison: {} (CORRECT)", equal);
+        logger.info("Using epsilon: {}", EPSILON);
 
-        // Right way (epsilon comparison)
-        boolean areEqual = Math.abs(a - b) < EPSILON;
-        logger.info("Right way - Epsilon comparison: {}", areEqual);
-        logger.info("Difference: {} (epsilon: {})", Math.abs(a - b), EPSILON);
+        logger.warn("=======================================\n");
     }
 }

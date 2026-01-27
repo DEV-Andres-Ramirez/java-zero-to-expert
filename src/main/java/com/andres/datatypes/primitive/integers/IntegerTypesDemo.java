@@ -60,84 +60,279 @@ public final class IntegerTypesDemo {
         throw new UnsupportedOperationException("Utility class cannot be instantiated");
     }
 
+    // ========== Basic Arithmetic Operations ==========
+
     /**
-     * Demonstrates all integer types with examples and metadata.
+     * Adds two integers.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Sum of a and b
      */
-    public static void demonstrate() {
-        logger.info("--- Integer Data Types ---\n");
-
-        // byte: 8 bits
-        byte byteValue = 127; // Maximum value
-        logger.info("byte - Value: {}, Size: {} bits, Range: {} to {}",
-                byteValue, Byte.SIZE, Byte.MIN_VALUE, Byte.MAX_VALUE);
-
-        // short: 16 bits
-        short shortValue = 32_000;
-        logger.info("short - Value: {}, Size: {} bits, Range: {} to {}",
-                shortValue, Short.SIZE, Short.MIN_VALUE, Short.MAX_VALUE);
-
-        // int: 32 bits (MOST COMMON)
-        int intValue = 2_147_483_647; // Using underscores for readability (Java 7+)
-        logger.info("int - Value: {}, Size: {} bits, Range: {} to {}",
-                intValue, Integer.SIZE, Integer.MIN_VALUE, Integer.MAX_VALUE);
-
-        // long: 64 bits
-        long longValue = 9_223_372_036_854_775_807L; // 'L' suffix required
-        logger.info("long - Value: {}, Size: {} bits, Range: {} to {}",
-                longValue, Long.SIZE, Long.MIN_VALUE, Long.MAX_VALUE);
-
-        // Practical example: Timestamp
-        long currentTimestamp = System.currentTimeMillis();
-        logger.info("\nPractical Example - Current timestamp: {} (requires long)", currentTimestamp);
-
-        // Arithmetic operations
-        demonstrateArithmetic();
-
-        // Overflow demonstration
-        demonstrateOverflow();
-
-        System.out.println();
+    public static int add(int a, int b) {
+        return a + b;
     }
 
     /**
-     * Demonstrates basic arithmetic operations with integers.
+     * Subtracts second integer from first.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Difference a - b
      */
-    private static void demonstrateArithmetic() {
-        logger.info("\n--- Arithmetic Operations ---");
-
-        int a = 10;
-        int b = 3;
-
-        logger.info("a = {}, b = {}", a, b);
-        logger.info("Addition (a + b): {}", a + b);
-        logger.info("Subtraction (a - b): {}", a - b);
-        logger.info("Multiplication (a * b): {}", a * b);
-        logger.info("Division (a / b): {} (integer division, truncates decimals)", a / b);
-        logger.info("Modulo (a % b): {}", a % b);
+    public static int subtract(int a, int b) {
+        return a - b;
     }
+
+    /**
+     * Multiplies two integers.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Product of a and b
+     */
+    public static int multiply(int a, int b) {
+        return a * b;
+    }
+
+    /**
+     * Divides first integer by second (integer division).
+     * <p>
+     * <strong>Note:</strong> Truncates decimals. 10 / 3 = 3 (not 3.333...)
+     * </p>
+     *
+     * @param a Dividend
+     * @param b Divisor
+     * @return Quotient a / b (truncated)
+     */
+    public static int divide(int a, int b) {
+        return a / b;  // Integer division - truncates decimals
+    }
+
+    /**
+     * Calculates remainder of division (modulo operation).
+     *
+     * @param a Dividend
+     * @param b Divisor
+     * @return Remainder of a / b
+     */
+    public static int modulo(int a, int b) {
+        return a % b;
+    }
+
+    // ========== Safe Arithmetic Operations ==========
+
+    /**
+     * Safely adds two integers, throwing exception on overflow.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Sum of a and b
+     * @throws ArithmeticException if result overflows
+     */
+    public static int safeAdd(int a, int b) {
+        return Math.addExact(a, b);
+    }
+
+    /**
+     * Safely subtracts integers, throwing exception on overflow.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Difference a - b
+     * @throws ArithmeticException if result overflows
+     */
+    public static int safeSubtract(int a, int b) {
+        return Math.subtractExact(a, b);
+    }
+
+    /**
+     * Safely multiplies integers, throwing exception on overflow.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Product of a and b
+     * @throws ArithmeticException if result overflows
+     */
+    public static int safeMultiply(int a, int b) {
+        return Math.multiplyExact(a, b);
+    }
+
+    /**
+     * Safely adds two longs, throwing exception on overflow.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Sum of a and b
+     * @throws ArithmeticException if result overflows
+     */
+    public static long safeAddLong(long a, long b) {
+        return Math.addExact(a, b);
+    }
+
+    // ========== Range Validation ==========
+
+    /**
+     * Checks if integer value is within byte range.
+     *
+     * @param value Value to check
+     * @return true if value fits in byte (-128 to 127)
+     */
+    public static boolean isInByteRange(int value) {
+        return value >= Byte.MIN_VALUE && value <= Byte.MAX_VALUE;
+    }
+
+    /**
+     * Checks if integer value is within short range.
+     *
+     * @param value Value to check
+     * @return true if value fits in short (-32768 to 32767)
+     */
+    public static boolean isInShortRange(int value) {
+        return value >= Short.MIN_VALUE && value <= Short.MAX_VALUE;
+    }
+
+    /**
+     * Checks if long value is within int range.
+     *
+     * @param value Value to check
+     * @return true if value fits in int
+     */
+    public static boolean isInIntRange(long value) {
+        return value >= Integer.MIN_VALUE && value <= Integer.MAX_VALUE;
+    }
+
+    // ========== Real-World Examples ==========
+
+    /**
+     * Checks if number is even.
+     *
+     * @param value Number to check
+     * @return true if value is even
+     */
+    public static boolean isEven(int value) {
+        return value % 2 == 0;
+    }
+
+    /**
+     * Checks if number is odd.
+     *
+     * @param value Number to check
+     * @return true if value is odd
+     */
+    public static boolean isOdd(int value) {
+        return value % 2 != 0;
+    }
+
+    /**
+     * Calculates absolute value.
+     *
+     * @param value Value to get absolute value of
+     * @return Absolute value (always positive)
+     */
+    public static int absolute(int value) {
+        return Math.abs(value);
+    }
+
+    /**
+     * Finds maximum of two integers.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Larger of a and b
+     */
+    public static int max(int a, int b) {
+        return Math.max(a, b);
+    }
+
+    /**
+     * Finds minimum of two integers.
+     *
+     * @param a First value
+     * @param b Second value
+     * @return Smaller of a and b
+     */
+    public static int min(int a, int b) {
+        return Math.min(a, b);
+    }
+
+    /**
+     * Calculates number of days between two timestamps.
+     *
+     * @param timestampMillis1 First timestamp in milliseconds
+     * @param timestampMillis2 Second timestamp in milliseconds
+     * @return Number of days between timestamps
+     */
+    public static long daysBetween(long timestampMillis1, long timestampMillis2) {
+        long diffMillis = Math.abs(timestampMillis1 - timestampMillis2);
+        return diffMillis / (1000 * 60 * 60 * 24);  // Convert millis to days
+    }
+
+    /**
+     * Calculates factorial iteratively.
+     *
+     * @param n Number to calculate factorial of (must be >= 0)
+     * @return Factorial of n
+     * @throws IllegalArgumentException if n is negative
+     */
+    public static long factorial(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Factorial undefined for negative numbers");
+        }
+
+        long result = 1;
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+
+    /**
+     * Calculates power (base^exponent) iteratively.
+     *
+     * @param base     Base number
+     * @param exponent Exponent (must be >= 0)
+     * @return base raised to exponent
+     * @throws IllegalArgumentException if exponent is negative
+     */
+    public static long power(int base, int exponent) {
+        if (exponent < 0) {
+            throw new IllegalArgumentException("Exponent must be non-negative");
+        }
+
+        long result = 1;
+        for (int i = 0; i < exponent; i++) {
+            result *= base;
+        }
+        return result;
+    }
+
+    // ========== Demonstrations (Educational - with logging) ==========
 
     /**
      * Demonstrates integer overflow behavior.
-     * 
      * <p>
-     * <strong>Warning:</strong> Integer overflow does not throw exceptions
-     * in Java. The value wraps around to the minimum value.
+     * <strong>Educational purpose:</strong> Shows that integer overflow
+     * does NOT throw exceptions - value wraps around silently.
+     * Use Math.addExact() to detect overflow.
      * </p>
      */
-    private static void demonstrateOverflow() {
-        logger.info("\n--- Integer Overflow Example ---");
+    public static void demonstrateOverflow() {
+        logger.warn("=== INTEGER OVERFLOW ISSUE ===");
 
         int maxInt = Integer.MAX_VALUE;
-        logger.info("Maximum int value: {}", maxInt);
-        logger.info("Max + 1 (overflow): {}", maxInt + 1);
-        logger.warn("WARNING: Overflow occurred! Value wrapped to Integer.MIN_VALUE");
+        logger.warn("Maximum int value: {}", maxInt);
+        logger.warn("Max + 1 = {} (wrapped to MIN_VALUE)", maxInt + 1);
+        logger.error("Overflow occurred silently - NO exception thrown!");
 
-        // Safe alternative: use Math.addExact() which throws exception on overflow
+        logger.info("\nSafe alternative using Math.addExact():");
         try {
             int result = Math.addExact(maxInt, 1);
             logger.info("Result: {}", result);
         } catch (ArithmeticException e) {
-            logger.error("Overflow detected with Math.addExact(): {}", e.getMessage());
+            logger.info("✓ Overflow detected and prevented: {}", e.getMessage());
         }
+
+        logger.warn("==============================\n");
     }
 }
